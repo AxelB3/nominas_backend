@@ -12,6 +12,18 @@ const validateCreate = [
     .not()
     .isEmpty()
     .withMessage("Mes no seleccionado"),
+  (req, res, next) => {
+    validateResult(req, res, next);
+  },
+];
+
+const validateGet = [
+  check("mes")
+    .exists()
+    .withMessage("Mes no existe")
+    .not()
+    .isEmpty()
+    .withMessage("Mes no seleccionado"),
   check("anio")
     .exists()
     .withMessage("Año no existe")
@@ -22,6 +34,6 @@ const validateCreate = [
   (req, res, next) => {
     validateResult(req, res, next);
   },
-];
+]
 
-module.exports = { validateCreate };
+module.exports = { validateCreate, validateGet};
