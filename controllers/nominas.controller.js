@@ -28,11 +28,16 @@ class empleadosController {
       '${id_empleado}', '${rol_id}', '${mes}')`)
       var success = false
   
+      let result = []
+
       if (rows.length > 0) {
+        result = await conexion.query(`select * from nominas where id_empleado = ${id_empleado} order by id desc limit 1`)
         success = true
       }
+
+      console.log(result);
   
-      res.json({nominas: rows[0], success: success})
+      res.json({nominas: result[0], success: success})
     }catch(e){
       console.log(e);
     }
